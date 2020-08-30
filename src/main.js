@@ -3,9 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 import {
-  Button
-} from 'vant';
-import {
+  Button,
   Popup
 } from 'vant';
 
