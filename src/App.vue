@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <li v-for="(item,index) in products"
+        :key="index">
+      库存: {{item.stock}}
+    </li>
     <van-button type="default"
                 @click="showPopup">默认按钮</van-button>
     <van-button type="primary"
@@ -10,23 +14,52 @@
                 @click="showPopup">警告按钮</van-button>
     <van-button type="danger"
                 @click="showPopup">危险按钮</van-button>
-    <van-popup v-model="show">弹出层内容</van-popup>
+    <van-button type="axios"
+                @click="axiosPro">axiosPro</van-button>
+    <van-button type="axios"
+                @click="useAxios">useAxios</van-button>
+    <van-popup v-model="show">{{msg}}</van-popup>
   </div>
 </template>
 
 <script>
 
-
+import student from './wardemo/student'
+import axios from 'axios'
 export default {
   name: 'App',
   data () {
     return {
-      show: false
+      show: false,
+      msg: '弹出层内容',
+      products: [{
+        name: "iphone",
+        stock: 10
+      },
+      {
+        name: "xiao mi",
+        stock: 1
+      },
+      {
+        name: "huawei",
+        stock: 5
+      },
+      ]
     }
   },
   methods: {
+    useAxios () {
+      axios.get('http://localhost:8080/wardemo/student/queryAllStudent', {
+        headers: { 'Access-Control-Allow-Origin': '*' }
+      })
+    },
     showPopup () {
-      this.show = true;
+      this.show = true
+    },
+    axiosPro () {
+      student.queryAllStudent().then(res => {
+        this.msg = res
+      })
     }
   }
 
