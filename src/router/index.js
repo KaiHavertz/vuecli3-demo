@@ -3,13 +3,12 @@ import VueRouter from 'vue-router'
 //注入插件
 Vue.use(VueRouter)
 //导入组件
-import HelloWord from '../components/HelloWorld.vue'
 
 //定义路由
 const MyRoutes = [{
   path: '/helloWorld',
   name: 'helloWorld',
-  component: HelloWord,
+  component: () => import('../components/HelloWorld.vue'), //路由懒加载
   meta: {
     title: 'hello world'
   }

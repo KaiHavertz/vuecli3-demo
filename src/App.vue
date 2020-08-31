@@ -1,76 +1,34 @@
 <template>
   <div id="app">
-    <image v-bind:src="src">
-    </image>
-    <image src="@/assets/img/logo.png">
-    </image>
-    <van-button type="default"
-                @click="showPopup">默认按钮</van-button>
-    <van-button type="primary"
-                @click="showPopup">主要按钮</van-button>
-    <van-button type="info"
-                @click="showPopup">信息按钮</van-button>
-    <van-button type="warning"
-                @click="showPopup">警告按钮</van-button>
-    <van-button type="danger"
-                @click="showPopup">危险按钮</van-button>
-    <van-button type="axios"
-                @click="axiosPro">axiosPro</van-button>
-    <van-button type="axios"
-                @click="useAxios">useAxios</van-button>
-    <van-popup v-model="show">{{msg}}</van-popup>
+    <van-dropdown-menu>
+      <van-dropdown-item v-model="value1"
+                         :options="option1" />
+      <van-dropdown-item v-model="value2"
+                         :options="option2" />
+    </van-dropdown-menu>
   </div>
 </template>
 
 <script>
-
+import img from './assets/img/1.png'
 import student from './api/wardemo/student'
 export default {
   name: 'App',
   data () {
     return {
-      src: '../src/assets/img/2.PNG',
-      show: false,
-      msg: '弹出层内容',
-      products: [{
-        name: "iphone",
-        stock: 10
-      },
-      {
-        name: "xiao mi",
-        stock: 1
-      },
-      {
-        name: "huawei",
-        stock: 5
-      },
+      value1: 0,
+      value2: 'a',
+      option1: [
+        { text: '最新歌单', value: 0 },
+        { text: '最热歌单', value: 1 },
+        { text: '我的歌单', value: 2 }
+      ],
+      option2: [
+        { text: '游戏', value: 'a' },
+        { text: '继续游戏', value: 'b' },
+        { text: '游戏排名', value: 'c' },
       ]
     }
   },
-  methods: {
-    useAxios () {
-      alert('hello,不推荐使用未封装的 axios ')
-    },
-    showPopup () {
-      this.show = true
-    },
-    axiosPro () {
-      student.queryAllStudent().then(res => {
-        this.msg = res
-      })
-    }
-  }
-
 }
 </script>
-
-<style lang="stylus">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
