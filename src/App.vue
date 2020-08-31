@@ -24,7 +24,7 @@
 
 <script>
 
-import student from './wardemo/student'
+import student from './api/wardemo/student'
 import axios from 'axios'
 export default {
   name: 'App',
