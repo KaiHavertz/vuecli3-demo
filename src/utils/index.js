@@ -1,8 +1,5 @@
 /** 分装 axios */
 import axios from 'axios'
-import {
-  config
-} from 'vue/types/umd'
 //创建 一个 axios 服务
 const service = axios.create({
   //这里先配置成本地，后面在 vue.config.js 中配置代理

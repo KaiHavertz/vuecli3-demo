@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <li v-for="(item,index) in products"
-        :key="index">
-      库存: {{item.stock}}
-    </li>
+    <image v-bind:src="src">
+    </image>
+    <image src="@/assets/img/logo.png">
+    </image>
     <van-button type="default"
                 @click="showPopup">默认按钮</van-button>
     <van-button type="primary"
@@ -25,11 +25,11 @@
 <script>
 
 import student from './api/wardemo/student'
-import axios from 'axios'
 export default {
   name: 'App',
   data () {
     return {
+      src: '../src/assets/img/2.PNG',
       show: false,
       msg: '弹出层内容',
       products: [{
@@ -49,9 +49,7 @@ export default {
   },
   methods: {
     useAxios () {
-      axios.get('http://localhost:8080/wardemo/student/queryAllStudent', {
-        headers: { 'Access-Control-Allow-Origin': '*' }
-      })
+      alert('hello,不推荐使用未封装的 axios ')
     },
     showPopup () {
       this.show = true
